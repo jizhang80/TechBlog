@@ -4,7 +4,9 @@
   "description": "a tech blog service for MVC practic",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildcss": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +26,8 @@
     "express-session": "^1.17.3",
     "mysql2": "^3.6.3",
     "sequelize": "^6.34.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
   }
 }
