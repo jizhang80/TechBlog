@@ -19,6 +19,14 @@ Blog.init(
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      create_time: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      edit_time: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
       user_id: {
         type: DataTypes.INTEGER,
         references: {
