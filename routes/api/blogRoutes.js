@@ -18,7 +18,7 @@ router.get('/', async(req, res) => {
 
 
 router.get('/:userId', async(req, res) => {
-    // get all the blogs of userId
+    // get all the blogs by userId
     try {
         const blogsData = await Blog.findAll({
             where: {
@@ -34,7 +34,7 @@ router.get('/:userId', async(req, res) => {
 
 
 router.get('/:blogId', async(req, res) => {
-    // get the blog of blogID
+    // get the blog by blogID
     try {
         const blogData = await Blog.findByPk(req.params.blogId);
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
@@ -92,3 +92,6 @@ router.delete('/:blogId', (req, res) => {
     })
     .catch((err) => res.json(err));
 });
+
+
+module.exports = router;
