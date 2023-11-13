@@ -1,23 +1,31 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
-const SERVER = 'http://localhost:3001/'
+const SERVER = 'http://localhost:3001'
 
 // home path
-router.get('/', async(req, res)=>{
-    try {
-        const response = await fetch(SERVER+'/api/blogs/')
-        if (response.ok) {
-            const blogs = response.json();
-            console.log(blogs)
+router.get('/', (req, res)=>{
+    fetch(SERVER+'/api/blogs/')
+        .then(response=>response.json())
+        .then(blogs=>{
             res.render('homepage', {blogs});
-        } else {
-            console.log('no-blogs')
-            res.render('homepage');
-        }
-    } catch (err) {
-        console.error(err)
-        res.status(500).json(err);
-    }
+        })
+        .catch(error => {
+            res.render('homepage', {error})
+            console.error('Error', error);
+        });
 });
+
+router.get('/blog/:blogId', (req, res) => {
+    const blogId = req.params.blogId;
+    fetch(SERVER + `/api/blogs/blog/${blogId}`)
+        .then(response=>response.json())
+        .then(blog=>{
+            res.render('blog', {blog});
+        })
+        .catch(error => {
+            res.render('blog', {error})
+            console.error('Error', error);
+        });
+})
 
 module.exports = router;

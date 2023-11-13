@@ -17,7 +17,7 @@ router.get('/', async(req, res) => {
 });
 
 
-router.get('/:userId', async(req, res) => {
+router.get('/user/:userId', async(req, res) => {
     // get all the blogs by userId
     try {
         const blogsData = await Blog.findAll({
@@ -33,13 +33,14 @@ router.get('/:userId', async(req, res) => {
 });
 
 
-router.get('/:blogId', async(req, res) => {
+router.get('/blog/:blogId', async(req, res) => {
     // get the blog by blogID
     try {
         const blogData = await Blog.findByPk(req.params.blogId);
-        const blogs = blogData.map((blog) => blog.get({ plain: true }));
-        res.status(200).json(blogs);
+        const blog = blogData.get({ plain: true });
+        res.status(200).json(blog);
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     };
 })
