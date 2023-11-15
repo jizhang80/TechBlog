@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Blog } = require('../../models');
+const { User, Blog, Comment } = require('../../models');
 
 // api/blogs
 
@@ -24,6 +24,7 @@ router.get('/user/:userId', async(req, res) => {
             where: {
                 user_id: req.params.userId,
             },
+            include: [{model: User}],
         });
         const blogs = blogsData.map((blog) => blog.get({ plain: true }));
         res.status(200).json(blogs);
@@ -36,8 +37,11 @@ router.get('/user/:userId', async(req, res) => {
 router.get('/blog/:blogId', async(req, res) => {
     // get the blog by blogID
     try {
-        const blogData = await Blog.findByPk(req.params.blogId);
+        const blogData = await Blog.findByPk(req.params.blogId, {
+            include: [{model: User}, {model: Comment}],
+        });
         const blog = blogData.get({ plain: true });
+        console.log(blog)
         res.status(200).json(blog);
     } catch (err) {
         console.log(err)

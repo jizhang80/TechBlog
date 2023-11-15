@@ -69,13 +69,16 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 
 ## Introduction
 ### Deployment link
+TBD
 
 ### Screenshot
+TBD
 
 ### packages been used
 ```
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.2",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -83,8 +86,5 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
     "express-session": "^1.17.3",
     "mysql2": "^3.6.3",
     "sequelize": "^6.34.0"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.3.5"
   }
 ```

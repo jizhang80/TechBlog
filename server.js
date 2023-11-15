@@ -12,8 +12,10 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create();
 
 const sess = {
-    secret: 'secret',
-    cookie: {},
+    secret: 'secret key',
+    cookie: {
+      maxAge: 60000,
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({

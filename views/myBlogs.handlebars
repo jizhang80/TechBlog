@@ -1,3 +1,9 @@
 <!--
-    show blogs by user_id
+    show blogs by user_id, and new Post button
 -->
+<button class="btn btn-primary">+ New Post</button>
+<div class="container">
+    {{#each blogs as |blog|}}
+    {{> blog-card}}
+    {{/each}}
+</div>
