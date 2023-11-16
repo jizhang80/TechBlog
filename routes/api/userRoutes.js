@@ -3,6 +3,26 @@ const { User } = require('../../models');
 
 // api/users
 
+router.post('/signup', async (req, res) => {
+  try {
+    const email = req.body.email;
+    const userData = await User.findOne({ where: {email: email }});
+
+    if (userData) {
+      // email already been used
+      res.status(409).json({ message: 'email already been used, please change a new one.'});
+      return;
+    }
+
+    User.create(req.body)
+    .then(newUser=>res.json(newUser))
+    .catch(err=>res.status(500).json(err));
+    
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });

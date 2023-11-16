@@ -8,10 +8,13 @@
     <div>Posted by <span>{{blog.user.name}}</span></div>
 </section>
 <section class="mb-3">
-    <form>
+    <!--comments section-->
+</section>
+<section class="mb-3">
+    <form class="form newComment-form">
         <div class="mb-3">
-            <lable for="commentText">Comment</lable>
-            <textarea id="commentText"></textarea>
+            <lable for="commentText" class="form-label">Comment</lable>
+            <textarea id="commentText" class="form-control"></textarea>
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </form>

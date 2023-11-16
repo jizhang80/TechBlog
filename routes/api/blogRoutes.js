@@ -52,9 +52,29 @@ router.get('/blog/:blogId', async(req, res) => {
 
 router.post('/', (req, res) => {
     // post a new blog
-    Blog.create(req.body)
+    Blog.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: req.session.user_id,
+    })
     .then(newBlog=>{
         res.json(newBlog);
+    })
+    .catch(err=>{
+        res.json(err);
+    });
+});
+
+
+router.post('/blog/:blogId/comment', (req, res) => {
+    // post a new blog
+    Comment.create({
+        content: req.body.content,
+        blog_id: req.params.blogId,
+        user_id: req.session.user_id,
+    })
+    .then(newComment=>{
+        res.json(newComment);
     })
     .catch(err=>{
         res.json(err);
@@ -67,8 +87,7 @@ router.put('/:blogId', (req, res) => {
     Blog.update({
         title: req.body.title,
         content: req.body.content,
-        edit_time: new Date(),
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
     },
     {
         where: {

@@ -56,4 +56,16 @@ router.get('/login', (req, res) => {
     res.render('login');
   });
 
+// signup route
+router.get('/signup', (req, res) => {
+    res.render('signup');
+  });
+
+// new blog route
+router.get('/newPost', withAuth, (req, res) => {
+    res.render('newBlog', {
+        logged_in: req.session.logged_in,   // session login data
+    });
+  });
+
 module.exports = router;
