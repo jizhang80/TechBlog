@@ -4,7 +4,7 @@
 <section class="mb-3" data-blog-id="{{blog.id}}">
     <h5 class="card-title">{{blog.title}}</h5>
     <p class="card-text">{{blog.content}}</p>
-    <div>Last edit at <span>{{blog.updatedAt}}</span></div>
+    <div>Last edit at <span>{{format_time blog.updatedAt}}</span></div>
     <div>Posted by <span>{{blog.user.name}}</span></div>
 </section>
 <section class="mb-3">
