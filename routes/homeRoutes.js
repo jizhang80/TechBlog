@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
-const SERVER = 'http://localhost:3001'
+const SERVER = `http://localhost:${process.env.PORT||3001}`
 
 // home path
 router.get('/', (req, res)=>{
