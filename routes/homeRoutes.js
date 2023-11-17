@@ -21,9 +21,10 @@ router.get('/blog/:blogId', withAuth, (req, res) => {
     const blogId = req.params.blogId;
     fetch(SERVER + `/api/blogs/blog/${blogId}`)
         .then(response=>response.json())
-        .then(blog=>{
+        .then(blogObj=>{
             res.render('blog', {
-                blog,
+                blog: blogObj.blog,
+                comments: blogObj.comments,
                 logged_in: req.session.logged_in,   // session login data
             });
         })

@@ -8,6 +8,9 @@ router.get('/', async(req, res) => {
     try {
         const blogsData = await Blog.findAll({
             include: [{model: User}],
+            order: [
+                ['updated_at', 'DESC'],
+            ],
         });
         const blogs = blogsData.map((blog) => blog.get({ plain: true }));
         res.status(200).json(blogs);
@@ -38,11 +41,21 @@ router.get('/blog/:blogId', async(req, res) => {
     // get the blog by blogID
     try {
         const blogData = await Blog.findByPk(req.params.blogId, {
-            include: [{model: User}, {model: Comment}],
+            include: [{model: User}],
         });
         const blog = blogData.get({ plain: true });
-        console.log(blog)
-        res.status(200).json(blog);
+        const commentsData = await Comment.findAll({
+            where: {
+                blog_id: req.params.blogId,
+            },
+            include: [{model: User}],
+            order: [
+                ['updated_at', 'DESC'],
+            ],
+        });
+        const comments = commentsData.map(comment=>comment.get({ plain: true }));
+        const blogObj = {blog, comments};
+        res.status(200).json(blogObj);
     } catch (err) {
         console.log(err)
         res.status(500).json(err);
@@ -61,13 +74,13 @@ router.post('/', (req, res) => {
         res.json(newBlog);
     })
     .catch(err=>{
-        res.json(err);
+        res.status(500).json(err);
     });
 });
 
 
 router.post('/blog/:blogId/comment', (req, res) => {
-    // post a new blog
+    // post a new comment
     Comment.create({
         content: req.body.content,
         blog_id: req.params.blogId,
@@ -77,7 +90,8 @@ router.post('/blog/:blogId/comment', (req, res) => {
         res.json(newComment);
     })
     .catch(err=>{
-        res.json(err);
+        console.error(err)
+        res.status(500).json(err);
     });
 });
 

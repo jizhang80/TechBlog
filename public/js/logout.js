@@ -4,13 +4,9 @@ const logout = async () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
     });
-  
-    if (response.ok) {
-      // If successfully logged out, redirect to the login page
-      document.location.replace('/');
-    } else {
-      alert(response.statusText);
-    }
+    
+    // If successfully logged out, redirect to the login page
+    document.location.replace('/');
   };
   
   document.querySelector('#logoutBtn').addEventListener('click', logout);

@@ -1,7 +1,7 @@
 <!--
     show single blog, allow to comment
 -->
-<section class="mb-3">
+<section class="mb-3" data-blog-id="{{blog.id}}">
     <h5 class="card-title">{{blog.title}}</h5>
     <p class="card-text">{{blog.content}}</p>
     <div>Last edit at <span>{{blog.updatedAt}}</span></div>
@@ -9,6 +9,9 @@
 </section>
 <section class="mb-3">
     <!--comments section-->
+    {{#each comments as |comment|}}
+    {{> comment-card}}
+    {{/each}}
 </section>
 <section class="mb-3">
     <form class="form newComment-form">
