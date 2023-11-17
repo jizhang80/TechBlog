@@ -26,6 +26,22 @@ router.get('/blog/:blogId', withAuth, (req, res) => {
                 blog: blogObj.blog,
                 comments: blogObj.comments,
                 logged_in: req.session.logged_in,   // session login data
+                is_owner: (req.session.user_id === blogObj.blog.user_id) //if current user is blog writer
+            });
+        })
+        .catch(error => {
+            console.error('Error', error);
+        });
+});
+
+router.get('/blog/:blogId/edit', withAuth, (req, res) => {
+    const blogId = req.params.blogId;
+    fetch(SERVER + `/api/blogs/blog/${blogId}`)
+        .then(response=>response.json())
+        .then(blogObj=>{
+            res.render('editBlog', {
+                blog: blogObj.blog,
+                logged_in: req.session.logged_in,   // session login data
             });
         })
         .catch(error => {

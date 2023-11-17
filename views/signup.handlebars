@@ -1,21 +1,19 @@
 <h2>Sign Up</h2>
 
 <form class="form signup-form">
-  <div class="form-group">
-    <label for="name-login">name</label>
-    <input class="form-input" type="text" id="name-signup" />
+  <div class="mb-3">
+    <label for="name-signup" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name-signup" aria-describedby="emailHelp">
   </div>
-  <div class="form-group">
-    <label for="email-signup">email:</label>
-    <input class="form-input" type="text" id="email-signup" />
+  <div class="mb-3">
+    <label for="email-signup" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email-signup" aria-describedby="emailHelp">
   </div>
-  <div class="form-group">
-    <label for="password-signup">password:</label>
-    <input class="form-input" type="password" id="password-signup" />
+  <div class="mb-3">
+    <label for="password-signup" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password-signup">
   </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">Sign Up!</button>
-  </div>
+  <button type="submit" class="btn btn-primary">Sign Up!</button>
 </form>
 
 <script src="/js/signup.js"></script>

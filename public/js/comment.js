@@ -5,7 +5,6 @@ async function commentBtnHandler() {
     const commentText = document.querySelector('#commentText').value.trim();
     const blogElement = document.querySelector('[data-blog-id]');
     const blogId = blogElement.dataset.blogId;
-    console.log(blogId, commentText)
     if (commentText) {
         try {
             const response = await fetch(`/api/blogs/blog/${blogId}/comment`, {

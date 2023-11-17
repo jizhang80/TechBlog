@@ -1,0 +1,17 @@
+<form class="form editPost-form">
+    <div class="mb-3" data-blog-id="{{blog.id}}">
+        <lable for="title" class="form-label">Title</lable>
+        <input type="text" class="form-control" value={{blog.title}} id="title">
+    </div>
+    <div class="mb-3">
+        <lable for="content" class="form-label">Content</lable>
+        <textarea class="form-control" id="content" rows="10">{{blog.content}}</textarea>
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" id="saveEditBtn">Save</button>
+    </div>
+
+</form>
+
+<script src="/js/saveEdit.js"></script>

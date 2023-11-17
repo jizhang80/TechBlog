@@ -96,12 +96,11 @@ router.post('/blog/:blogId/comment', (req, res) => {
 });
 
 
-router.put('/:blogId', (req, res) => {
+router.put('/blog/:blogId', (req, res) => {
     // update a blog
     Blog.update({
         title: req.body.title,
         content: req.body.content,
-        user_id: req.session.user_id,
     },
     {
         where: {
