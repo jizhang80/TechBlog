@@ -69,10 +69,10 @@ THEN I am able to view posts and comments but I am prompted to log in again befo
 
 ## Introduction
 ### Deployment link
-TBD
+<https://techblog-jimmy-495653a15641.herokuapp.com/>
 
 ### Screenshot
-TBD
+![screenshot.jpg](./Assets/screenshot.jpg)
 
 ### packages been used
 ```
